@@ -22,7 +22,17 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@components/*": ["src/app/components/*"],
+      "@services/*": ["src/app/services/*"],
+      "@pages/*": ["src/app/pages/*"],
+      "@chat/*": ["src/app/chat/*"],
+      "@chat-components/*": ["src/app/chat/components/*"],
+      "@chat-pages/*": ["src/app/chat/pages/*"],
+      "@chat-services/*": ["src/app/chat/services/*"],
+      "@chat-interfaces/*": ["src/app/chat/interfaces/*"],
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
