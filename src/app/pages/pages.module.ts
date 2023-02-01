@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from '@pages/home/home.component';
+import { AngularMaterialModule } from '@material-module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -8,7 +10,9 @@ import { HomeComponent } from '@pages/home/home.component';
     HomeComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AngularMaterialModule,
+    ReactiveFormsModule
   ],
 })
 export class PagesModule { }

@@ -1,0 +1,35 @@
+.container {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    height: 100%;
+    background: rgb(8,2,48);
+    background: linear-gradient(176deg, rgba(8,2,48,1) 0%, rgba(46,2,87,1) 100%);
+
+    .Login {
+        width: 400px;
+        height: 300px;
+        mat-card-header {
+            display: inline;
+            margin-top: 1rem;
+            h1 {
+                // color :rgb(255, 255, 255);
+                text-align: center;
+            }
+        }
+
+        form {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+
+            .register_btn {
+                padding: 20px;
+                font-size: 1em;
+                background-color: #1FB50D;
+            }
+        }
+    }
+}

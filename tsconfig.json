@@ -13,6 +13,7 @@
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
+    "strictNullChecks":false,
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
@@ -25,6 +26,7 @@
     ],
     "paths": {
       "@components/*": ["src/app/components/*"],
+      "@material-module": ["src/app/angular-material.module.ts"],
       "@services/*": ["src/app/services/*"],
       "@pages/*": ["src/app/pages/*"],
       "@chat/*": ["src/app/chat/*"],

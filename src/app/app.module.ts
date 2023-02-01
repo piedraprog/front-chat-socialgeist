@@ -5,7 +5,11 @@ import { PagesModule } from '@pages/pages.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularMaterialModule } from '@material-module';
+import { CookieService } from 'ngx-cookie-service';
+const config: SocketIoConfig = { url: 'http://localhost:81', options: {} };
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,9 +18,14 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     PagesModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SocketIoModule.forRoot(config),
+    BrowserAnimationsModule,
+    AngularMaterialModule
   ],
-  providers: [],
+  providers: [
+    CookieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,1 +1,4 @@
-<p>user-textinput works!</p>
+<form (ngSubmit)="sendMessage()" [formGroup]="formMessage" class="users-type">
+    <input matInput formControlName="message" type="text"/>
+    <button mat-raised-button color="primary">Enviar</button>
+</form>

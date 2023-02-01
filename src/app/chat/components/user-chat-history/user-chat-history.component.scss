@@ -1,0 +1,27 @@
+.users-chat {
+    ul{
+        list-style: none;
+        margin: 0;
+        padding: .75rem;
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+
+        li{
+            font-size: .85rem;
+            padding: .5rem .75rem;
+            background-color: #ff79c6;
+            border-radius: 8px;
+        }
+    }
+}
+
+
+.users-textInput{
+    position: fixed;
+    bottom: 0;
+    margin-right: 10px;
+    width: 75%;
+    background-color: transparent;
+    height: 50px;
+}

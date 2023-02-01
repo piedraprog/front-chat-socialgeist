@@ -1,0 +1,39 @@
+:host {
+  display: block;
+  position: relative;
+}
+
+.users-type {
+
+    margin-left: 5px;
+
+    button {
+        
+        background-color: #27ae60;
+        border-radius: 0px 8px 8px 0;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+ 
+        outline: none;
+        overflow: hidden;
+        padding: 13px 20px;
+        position: relative;
+        text-align: center;
+        transform: translate3d(0, 0, 0);
+        transition: all 0.3s;
+        user-select: none;
+        vertical-align: baseline;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
+
+    input {
+        width: 85%;
+        padding: 0.4rem;
+        outline: none;
+        border: none;
+        border-radius: 8px 0px 0px 8px;
+        height: 22.7px;
+    }
+}

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ChatService } from '@chat/services/chat.service';
 
 @Component({
   selector: 'app-user-sidenav-chats',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-sidenav-chats.component.scss']
 })
 export class UserSidenavChatsComponent {
+  public users$ = this.chatService.users$;
+
+  constructor(private chatService: ChatService) {}
+
 
 }
