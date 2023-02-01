@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from '@material-module';
 import { CookieService } from 'ngx-cookie-service';
 
-const config: SocketIoConfig = { url: 'http://167.71.90.81:81', options: {
+const config: SocketIoConfig = { url: 'chat-socialgeist.up.railway.app', options: {
   withCredentials: false,
 } };
 
