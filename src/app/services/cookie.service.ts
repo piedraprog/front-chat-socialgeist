@@ -19,6 +19,7 @@ export class cookies {
   
   setCookie( id: string) : void {
     this.cookieService.set('user',id)
+    this.router.navigateByUrl('/chat/soporte');
   }
 
   verifyCookie() {
