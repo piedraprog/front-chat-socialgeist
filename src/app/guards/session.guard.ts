@@ -29,8 +29,9 @@ export class SessionGuard implements CanActivate {
 
     return this.cookies.verifyCookie().pipe(
       take(1),
-      map((isLoggedIn: boolean) => {
-        if (!isLoggedIn) {
+      map((existUser: boolean): boolean => {
+        
+        if (!existUser) {
           this.router.navigate(['/home']);
           return false;
         }

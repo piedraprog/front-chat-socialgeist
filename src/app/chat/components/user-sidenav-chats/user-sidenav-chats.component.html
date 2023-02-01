@@ -1,4 +1,6 @@
 <div class="users-room">
+
+  <h2 class="title">Bienvenido {{ currentUser }}</h2>
   <ul>
     <li
       routerLinkActive="active"
@@ -15,4 +17,8 @@
       </div>
     </li>
   </ul>
+
+  <div class="button">
+    <button (click)="logout()" mat-raised-button color="primary">Cerrar Sesion</button>
+  </div>
 </div>

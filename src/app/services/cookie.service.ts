@@ -25,7 +25,14 @@ export class cookies {
     return this.existUser.asObservable();
   }
 
-  deleteCookie() : void {
 
+  getCookie() {
+    return this.cookieService.get('user');
+  }
+
+  deleteCookie() : void {
+    this.cookieService.deleteAll();
+    console.log("fuap")
+    this.router.navigateByUrl('/home');
   }
 }

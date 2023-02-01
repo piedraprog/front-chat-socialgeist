@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { cookies } from '@services/cookie.service';
 import { Socket } from 'ngx-socket-io';
 import { BehaviorSubject } from 'rxjs';
 
@@ -8,64 +9,49 @@ import { BehaviorSubject } from 'rxjs';
 export class ChatService {
 
 
-  private _users$ = new BehaviorSubject<UserType[]>([
+  private _users$ = new BehaviorSubject<roomType[]>([
     {
-      name: 'TypeScript',
-      slogan: 'Soy muy estricto! 😉',
-      avatar: 'https://cdn.worldvectorlogo.com/logos/typescript-2.svg',
-      id: 'ts',
+      name: 'Soporte Tecnico',
+      slogan: 'Canal de Ayuda y soporte',
+      avatar: 'https://img2.freepng.es/20180613/ief/kisspng-technical-support-computer-icons-user-avatar-5b209ed47faf27.648037131528864468523.jpg',
+      id: 'soporte',
     },
     {
-      name: 'JavaScript',
-      slogan: 'El versatil de la casa 🤔',
+      name: 'Juan Tecnico',
+      slogan: 'Te ayudo a reparar lo que sea',
       avatar:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/480px-Unofficial_JavaScript_logo_2.svg.png',
-      id: 'js',
+        'https://img2.freepng.es/20180613/ief/kisspng-technical-support-computer-icons-user-avatar-5b209ed47faf27.648037131528864468523.jpg',
+      id: 'juan_tec',
     },
     {
-      name: 'Angular',
-      slogan: 'Todo son modulos 👌',
+      name: 'El jefe',
+      slogan: 'Habla directamente con el CEO',
       avatar:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png',
-      id: 'angular',
-    },
-    {
-      name: 'NodeJS',
-      slogan: 'El mejor compañero 🤣',
-      avatar:
-        'https://www.secret-source.eu/wp-content/uploads/2017/11/node-js-logo.jpg',
-      id: 'nodejs',
-    },
-    {
-      name: 'NestJs',
-      slogan: 'hermano de angular 🆗',
-      avatar:
-        'https://docs.nestjs.com/assets/logo-small.svg',
-      id: 'nestjs'
-    },
-    {
-      name: 'ReactJs',
-      slogan: 'Estoy en todos lados 😎',
-      avatar:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/React.svg/1200px-React.svg.png',
-      id: 'reactjs',
-    },
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2QmG_KIxY4qfwzPGq8J6NaRzbc9g9HZDO9AMjT5ftaBGHptA9_Sjcty9vqttdG4_9E_o&usqp=CAU',
+      id: 'jefe',
+    }
   ]);
 
   public users$ = this._users$.asObservable();
 
-  private _chat$ = new BehaviorSubject<ChatType[]>([]);
+  private _chat$ = new BehaviorSubject<chatType[]>([]);
   public chat$ = this._chat$.asObservable();
 
   private _room$ = new BehaviorSubject<string | null>(null);
 
-  constructor(private socket: Socket) {
+  constructor(
+    private socket: Socket,
+    private cookie: cookies  
+  ) {
+
+    const user: string = this.cookie.getCookie()
+
 
     socket.fromEvent('new_message').subscribe((message: any) => {
-      const chatObject: ChatType = {
+      const chatObject: chatType = {
         user: {
           avatar: '',
-          name: 'Anonymus',
+          name: user,
           id: '0',
           slogan: '',
         },
@@ -81,13 +67,13 @@ export class ChatService {
     });
   }
 
-  public setUser(user: UserType): void {
+  public setUser(user: roomType): void {
     const current = this._users$.getValue();
     const state = [...current, user];
     this._users$.next(state);
   }
 
-  public setChat(message: ChatType): void {
+  public setChat(message: chatType): void {
     const current = this._chat$.getValue();
     const state = [...current, message];
     this._chat$.next(state);
@@ -97,12 +83,12 @@ export class ChatService {
     this._chat$.next([]);
   }
 
-  //TODO: Enviar mensaje desde el FRONT-> BACKEND
-  sendMessage(payload: { message: string; room?: string }) {
+  //Enviar mensaje desde el FRONT-> BACKEND
+  sendMessage(payload: { message: string; room?: string, user: string }) {
     const roomCurrent = this._room$.getValue(); //TODO: js, ts, node
     if (roomCurrent) {
       payload = { ...payload, room: roomCurrent };
-      console.log(payload);
+      console.log("envio al server",payload);
       this.socket.emit('event_message', payload); //TODO FRONT
     }
   }
@@ -118,18 +104,23 @@ export class ChatService {
   }
 
   getMessage() {
+    console.log("get mensaje", this.socket.fromEvent('message'))
     return this.socket.fromEvent('message');
   }
+
 }
 
-interface UserType {
+interface roomType {
   name: string;
   avatar: string;
   slogan: string;
   id: string;
 }
 
-interface ChatType {
-  user: UserType;
-  message: string;
+interface chatType {
+  user: roomType;
+  message: {
+    message: string,
+    user: string,
+  };
 }

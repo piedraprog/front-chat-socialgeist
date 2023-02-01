@@ -1,7 +1,8 @@
 <div class="users-chat">
   <ul>
     <li *ngFor="let chat of chat$ | async">
-      {{ chat.message }}
+      <strong>{{ chat.message['user'] }}:</strong>
+      {{ chat.message['message']}}
     </li>
   </ul>
 </div>

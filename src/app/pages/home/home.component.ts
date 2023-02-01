@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { cookies } from '@services/cookie.service';
+import { map, take } from 'rxjs';
 
 
 
@@ -17,12 +19,16 @@ export class HomeComponent {
   }); 
 
   constructor(
-    private cookieService : cookies
-  ){}
+    private cookieService : cookies,
+    private router: Router
+  ){
+
+  }
 
   registerMe(): void {
-    console.log(this.formUser.get('user').value)
+    
     this.cookieService.setCookie(this.formUser.get('user').value)
+    this.router.navigateByUrl('/chat')
   }
 
 

@@ -2,6 +2,12 @@
     height: 100vh;
     border-right: solid 1px #ebebeb;
 
+    .title {
+        text-align: center;
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
     ul {
         display: flex;
         flex-direction: column;
@@ -58,4 +64,16 @@
         }
     }
 
+
+    .button {
+        position: fixed;
+        bottom: 10px;
+        left: 20px;
+        
+        button {
+            margin: auto;
+            width: 250px;
+        }
+
+    }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ChatService } from '@chat/services/chat.service';
+import { cookies } from '@services/cookie.service';
 
 
 @Component({
@@ -18,7 +19,8 @@ export class UserTextinputComponent implements OnInit {
 
   constructor(
     private chatService: ChatService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cookie: cookies
   ) {}
 
   ngOnInit(): void {
@@ -27,13 +29,10 @@ export class UserTextinputComponent implements OnInit {
   }
 
   sendMessage(): void {
-    const { message , room } = this.formMessage.value;
-    console.log( message, room)
+    const { message, room } = this.formMessage.value;
 
     if(message && room) { 
-      this.chatService.sendMessage({ message , room });
-    } else {
-      // TODO: METODO PARA IMPEDIR QUE SE ENVIE EL MSM 
+      this.chatService.sendMessage({ message , room, user: this.cookie.getCookie()});
     }
     this.formMessage.controls['message'].reset();
   }

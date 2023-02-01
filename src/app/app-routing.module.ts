@@ -5,14 +5,14 @@ import { SessionGuard } from './guards/session.guard';
 
 const routes: Routes = [
   {
-    path: 'home',
-    pathMatch: 'full',
-    component: HomeComponent
-  },
-  {
     path: 'chat',
     canActivate: [SessionGuard],
     loadChildren: () => import('./chat/chat.module').then((m) => m.ChatModule),
+  },
+  {
+    path: 'home',
+    pathMatch: 'full',
+    component: HomeComponent
   },
   {
     path:'',

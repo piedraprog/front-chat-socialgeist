@@ -12,10 +12,7 @@ export class ChatPageComponent implements OnInit{
   constructor(
     private route: ActivatedRoute,
     private chatService: ChatService
-  ) {
-
-    console.log("hola")
-  }
+  ) {  }
 
 
   ngOnInit(): void {

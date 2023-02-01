@@ -9,6 +9,7 @@ import { ChatService } from '@chat/services/chat.service';
 export class UserChatHistoryComponent {
   public chat$ = this.chatService.chat$
 
-  constructor(private chatService:ChatService) { }
+  constructor(private chatService:ChatService) { 
+  }
 
 }
