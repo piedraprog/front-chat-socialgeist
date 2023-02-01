@@ -32,7 +32,6 @@ export class cookies {
 
   deleteCookie() : void {
     this.cookieService.deleteAll();
-    console.log("fuap")
     this.router.navigateByUrl('/home');
   }
 }

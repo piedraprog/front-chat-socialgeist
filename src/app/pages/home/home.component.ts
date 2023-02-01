@@ -28,7 +28,7 @@ export class HomeComponent {
   registerMe(): void {
     
     this.cookieService.setCookie(this.formUser.get('user').value)
-    this.router.navigateByUrl('/chat')
+    this.router.navigateByUrl('/chat/soporte')
   }
 
 
